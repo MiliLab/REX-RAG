@@ -1,7 +1,7 @@
 <p align="center">
 
   <h2 align="center"><strong>REX-RAG: Reasoning Exploration with Policy Correction in
-Retrieval-Augmented Generatio</strong></h2>
+Retrieval-Augmented Generation</strong></h2>
 
 <div align="center">
 <h5>
