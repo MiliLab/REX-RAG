@@ -1,14 +1,16 @@
-from collections import defaultdict
-from search_r1.llm_agent.thinking_prompts import revision_prompts
+import os
 import pickle
+from collections import defaultdict
+
 from transformers import AutoTokenizer
 
-import os
+from search_r1.llm_agent.thinking_prompts import revision_prompts
+
 
 class PrefixIndex:
     def __init__(self,tokenizer = None):
-        if os.path.exists('/workspace/repository/verl/verl/workers/actor/prefix_index_random_15.pkl'):
-            with open('/workspace/repository/verl/verl/workers/actor/prefix_index_random_15.pkl', 'rb') as f:
+        if os.path.exists('verl/workers/actor/prefix_index.pkl'):
+            with open('verl/workers/actor/prefix_index.pkl', 'rb') as f:
                 data = pickle.load(f)
             self.vocabulary = data['vocabulary']
             self.vocabulary_index = data['vocabulary_index']
