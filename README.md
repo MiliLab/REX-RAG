@@ -113,23 +113,3 @@ Following their framework, we analyze two types of uncertainty:
 
 These are measured through token-level confidence scoring. The visualization demonstrates that REX-RAG achieves significantly higher reliability scores for its reasoning tokens (typically in the 0.6-0.8 range), whereas the baseline model exhibits lower reliability (generally in the 0.2-0.4 range).
 
-# Acknowledgements
-
-We would like to express our gratitude to the following open-source projects that were instrumental in our work:
-- [**verl**](https://github.com/volcengine/verl)
-- [**Search-R1**](https://github.com/PeterGriffinJin/Search-R1)
-- [**FlashRAG**](https://github.com/RUC-NLPIR/FlashRAG)
-
-Special thanks to [**LogTokU**](https://github.com/MaHuanAAA/logtoku) for their excellent work on uncertainty visualization, which we adapted for our analysis.
-
-# ⭐ Citation
-
-If you find our work useful, please consider giving a ⭐ and citing our paper:
-```
-@article{jiang2025rex,
-  title={REX-RAG: Reasoning Exploration with Policy Correction in Retrieval-Augmented Generation},
-  author={Jiang, Wentao and Feng, Xiang and Wang, Zengmao and Luo, Yong and Xu, Pingbo and Chen, Zhe and Du, Bo and Zhang, Jing},
-  journal={arXiv preprint arXiv:2508.08149},
-  year={2025}
-}
-```
