@@ -31,49 +31,44 @@ import torch
 import torch.distributed as dist
 from omegaconf import DictConfig
 from sglang.srt.managers.tokenizer_manager import (
-    ReleaseMemoryOccupationReqInput,
-    ResumeMemoryOccupationReqInput,
-    UpdateWeightsFromTensorReqInput,
-)
+    ReleaseMemoryOccupationReqInput, ResumeMemoryOccupationReqInput,
+    UpdateWeightsFromTensorReqInput)
 from sglang.srt.openai_api.protocol import Tool
 from sglang.srt.sampling.sampling_params import SamplingParams
 from sglang.srt.server_args import ServerArgs
-from sglang.srt.utils import (
-    MultiprocessingSerializer,
-    assert_pkg_version,
-    get_ip,
-    get_open_port,
-    is_cuda,
-    maybe_set_triton_cache_manager,
-    set_prometheus_multiproc_dir,
-    set_ulimit,
-)
+from sglang.srt.utils import (MultiprocessingSerializer, assert_pkg_version,
+                              get_ip, get_open_port, is_cuda,
+                              maybe_set_triton_cache_manager,
+                              set_prometheus_multiproc_dir, set_ulimit)
 from tensordict import TensorDict
 from torch.distributed.device_mesh import DeviceMesh, init_device_mesh
 from torch.nn.utils.rnn import pad_sequence
-from transformers import PreTrainedTokenizer, PreTrainedTokenizerFast, ProcessorMixin
+from transformers import (PreTrainedTokenizer, PreTrainedTokenizerFast,
+                          ProcessorMixin)
 
 from verl import DataProto
 from verl.interactions.base import BaseInteraction
-from verl.interactions.utils.interaction_registry import initialize_interactions_from_config
+from verl.interactions.utils.interaction_registry import \
+    initialize_interactions_from_config
 from verl.third_party.sglang import parallel_state as sglang_ps
 from verl.tools.base_tool import BaseTool
-from verl.tools.schemas import OpenAIFunctionCallSchema, OpenAIFunctionParsedSchema, OpenAIFunctionToolCall
+from verl.tools.schemas import (OpenAIFunctionCallSchema,
+                                OpenAIFunctionParsedSchema,
+                                OpenAIFunctionToolCall)
 from verl.tools.utils.tool_registry import initialize_tools_from_config
 from verl.utils.debug import GPUMemoryLogger
 from verl.utils.net_utils import is_ipv6
-from verl.utils.torch_functional import get_response_mask, pad_sequence_to_length
+from verl.utils.torch_functional import (get_response_mask,
+                                         pad_sequence_to_length)
 from verl.workers.rollout.base import BaseRollout
-from verl.workers.rollout.schemas import (
-    AsyncRolloutRequest,
-    AsyncRolloutRequestStateEnum,
-    FinishReasonTypeEnum,
-    Message,
-)
+from verl.workers.rollout.schemas import (AsyncRolloutRequest,
+                                          AsyncRolloutRequestStateEnum,
+                                          FinishReasonTypeEnum, Message)
 from verl.workers.rollout.sglang_rollout.utils import broadcast_pyobj
 
 try:
-    from sglang.srt.function_call.function_call_parser import FunctionCallParser
+    from sglang.srt.function_call.function_call_parser import \
+        FunctionCallParser
 except ImportError:
     from sglang.srt.function_call_parser import FunctionCallParser
 
@@ -411,7 +406,6 @@ class SGLangRollout(BaseRollout):
                 # log_requests=True,
                 # log_requests_level=2,
                 # max_running_requests=1,
-                mm_attention_backend="fa3",
                 attention_backend="fa3",
                 # In async mode, we want token in token out.
                 skip_tokenizer_init=self.config.mode == "async",

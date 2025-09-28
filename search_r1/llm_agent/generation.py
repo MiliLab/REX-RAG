@@ -1,22 +1,24 @@
 # from turtle import bye
+import os
+import random
+import re
+import shutil
+from collections import defaultdict
 from configparser import NoOptionError
+from dataclasses import dataclass
+from typing import Any, Dict, List, Tuple, Union
+
+import requests
+import torch
 from pexpect import __revision__
 from sympy.sets.sets import true
-import torch
-import re
-from collections import defaultdict
-import os
-from typing import List, Dict, Any, Tuple
-from dataclasses import dataclass
-from .tensor_helper import TensorHelper, TensorConfig
+
 from verl import DataProto
 from verl.utils.tracking import Tracking
-import shutil
-import requests
-from typing import Union
-import random
 
-from .thinking_prompts import revision_prompts, action_prompts, meta_thinking_prompt, action_invalid_prompt
+from .tensor_helper import TensorConfig, TensorHelper
+from .thinking_prompts import (action_invalid_prompt, meta_thinking_prompt,
+                               revision_prompts)
 
 # thinking_prompt = """<decision> Does my previous reasoning lead to the correct answer? I will reflect on the following aspects: \
 # 1. [Knowledge Assessment] Do I already know enough to solve this problem confidently, or would retrieving external information (e.g., from Wikipedia or search) significantly reduce uncertainty?\

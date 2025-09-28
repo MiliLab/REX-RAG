@@ -13,7 +13,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-dataset/*
+datasets/*
 tensorflow/my_graph/*
 .idea/
 # C extensions
@@ -21,9 +21,11 @@ tensorflow/my_graph/*
 .triton/
 .log
 verl_checkpoints/
-sota模型/
 .vscode/
 data/
+models
+scripts/**/*custom*.sh
+verl.egg-info/
 
 # Distribution / packaging
 .Python

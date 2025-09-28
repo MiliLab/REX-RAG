@@ -2,12 +2,12 @@ set -x
 ray stop --force
 
 # ! Change it to your workspace path
-HOME="/workspace/rex-rag"
+WORKSPACE="/workspace/rex-rag"
 
 # ! Change it to your wandb api key
 export WANDB_API_KEY=xxx
 WAND_PROJECT="REX-RAG-Experiment-Collection"
-comment="Full_Tech_Prefix_Index"
+comment="Full_Tech"
 
 export RAY_DEDUP_LOGS=0
 export CUDA_DEVICE_MAX_CONNECTIONS=1
@@ -19,10 +19,11 @@ type="train"
 
 # ! Change it to your model path
 export BASE_MODEL='/workspace/modelsl/Qwen2.5-3B'
+# ! Change it to your experiment name
 export EXPERIMENT_NAME=qwen2.5-3b-${comment}-${type}
 
-search_r1_train_path=$HOME/data/search-r1-dataset/train.parquet
-search_r1_test_path=$HOME/data/search-r1-dataset/test.parquet
+search_r1_train_path=$WORKSPACE/dataset/train.parquet
+search_r1_test_path=$WORKSPACE/dataset/test.parquet
 
 train_files="['$search_r1_train_path']"
 test_files="['$search_r1_test_path']"
